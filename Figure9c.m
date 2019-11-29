@@ -46,9 +46,9 @@ set(gca,'FontSize',FontSize*0.75,'LineWidth',1);
 ylim([0.1 100])
 xlim([0.1 20000])
 
-xlabel('Depth from surface (m)','FontSize',FontSize,'FontName','Times New Roman');%设置横坐标名称和字体大小
-set(gca,'YTick',[1 2 5 10 20 50 100],'LineWidth',1.2,'TickLength',[0.015 0.01])%,'TickLength',[0.05 0.02]
-ylabel('Abundance of basin ejecta in deposits (%)','FontSize',FontSize,'FontName','Times New Roman');%设置纵坐标名称和字体大小
+xlabel('Depth from surface (m)','FontSize',FontSize,'FontName','Times New Roman');
+set(gca,'YTick',[1 2 5 10 20 50 100],'LineWidth',1.2,'TickLength',[0.015 0.01]);
+ylabel('Abundance of basin ejecta in deposits (%)','FontSize',FontSize,'FontName','Times New Roman');
 
 
 
