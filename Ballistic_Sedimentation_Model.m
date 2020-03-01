@@ -1,6 +1,6 @@
 function [T_LM_med,T_PE, abundance_PEinNewED, secondary_craters, Fraction_ExcavatedLM]=Ballistic_Sedimentation_Model(Rat,r_SOI_center,abundance_local_PE,Elevation_from_Local_Surface,T_Rat,bt,theta_degree,Y,K1,mu,nu)
-%the code of the ballistic sedimentation model of Xie et al. (2019).
-%Xie, M., T. Liu, and A. Xu (2019), Ballistic sedimentation of impact crater ejecta: Implications for resurfacing and the provenance of lunar samples, Journal of Geophysical Research: Planets.
+%the code of the ballistic sedimentation model of Xie et al. (2020), created with R2016b.
+%Xie, M., T. Liu, and A. Xu (2020), Ballistic sedimentation of impact crater ejecta: Implications for resurfacing and the provenance of lunar samples, Journal of Geophysical Research: Planets.
 
 %-------------------------input parameters-------------------------------------------
 %at least 4 input parameters.
@@ -11,7 +11,7 @@ function [T_LM_med,T_PE, abundance_PEinNewED, secondary_craters, Fraction_Excava
 %abundance_local_PE: the abundance of previously emplaced crater ejecta
 %in eject deposits versus depth from the surface of the ejecta deposits.The
 %ejecta deposits are the pre-existing local material for the emplacement of
-%the ejecta of the current crater of interest; for the earliest crater, abundance_local_PE should be empty.
+%the ejecta of the current crater of interest; for the earliest crater, abundance_local_PE should be an empty array.
 
 %Elevation_from_Local_Surface: depth from the surface of pre-existing local material. Note
 %that local material often consists of earlier basin ejecta and pre-basin materials
@@ -22,21 +22,21 @@ function [T_LM_med,T_PE, abundance_PEinNewED, secondary_craters, Fraction_Excava
 
 %theta_degree: the launch/impact angle of ejecta in degrees with default value of theta_degree=45.
 
-%Y: the strengh of target material
+%Y: the strengh of target material.
 
-%K1,mu and nu are the constants in crater scaling laws (Equation 12; see also Table S1).
+%K1,mu and nu are the constants in crater scaling laws (Equation 12; see also Table 2).
 %%-------------------------output parameters-----------------------------------------
-%T_LM_med: the median thickness of ejecta deposits.
+%T_LM_med: the median thickness of excavated local material.
 
 %T_PE: the thickness of primary ejecta.
 
+%abundance_PEinNewED:the abundance of ejecta in ejecta depositsas a function of
+%depth (i.e., Elevation_from_Local_Surface).
+
 %secondary_craters: a struct recording the information of secondary craters.
-%secondary_craters.Num
 
-%abundance_local_PE:the abundance of ejecta in ejecta deposits.
-%the ejecta of the current crater of interest.
-
-%Fraction_ExcavatedLM:fraction of excavated local material
+%Fraction_ExcavatedLM:fraction of excavated local material as a function of
+%depth (i.e., Elevation_from_Local_Surface).
 %--------------------------------------------------------------------------
 
 %--------------------------------------defaults--------------------------------------------------
@@ -74,8 +74,8 @@ Cex=3.5;%
 Rm =1737.4;%km
 rhot       = 3e6;% target density  g/m^3
 rhoe       = rhot;% ejecta density  g/m^3
-L_SOI      =2*r_SOI_center.^0.5;%
-launch_position=Rat;
+L_SOI      =2*r_SOI_center.^0.5;%km
+launch_position=Rat;%km
 S_SOI      = L_SOI.^2;%km^2
 g          = 1.622;%k/s^2
 g_km       = g/1000;%km/s^2
